@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IACryptOfTheCSharpDancer.metier.algorithme
 {
-    class ParcoursLargeur : AlgorithmeCalculDistance
+    public class ParcoursLargeur : AlgorithmeCalculDistance
     {
         public ParcoursLargeur(Carte carte)
             : base (carte)

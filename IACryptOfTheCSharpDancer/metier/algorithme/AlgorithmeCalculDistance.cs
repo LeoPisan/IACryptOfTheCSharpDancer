@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IACryptOfTheCSharpDancer.metier.algorithme
 {
-    abstract class AlgorithmeCalculDistance
+    public abstract class AlgorithmeCalculDistance
     {
         #region attributes
         private Dictionary<Case, int> distances;
