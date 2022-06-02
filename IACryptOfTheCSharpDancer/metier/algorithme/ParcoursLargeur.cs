@@ -31,6 +31,22 @@ namespace IACryptOfTheCSharpDancer.metier.algorithme
             }
         }
 
+        public override List<TypeMouvement> GetChemin(Case arrivee)
+        {
+            //initialisation
+            List<TypeMouvement> resultat = new List<TypeMouvement>();
+            Case caseEnCours = arrivee;
+
+            //calcul
+            if (GetDistance(caseEnCours) != -1)
+            {
+                while (GetDistance(caseEnCours) > 0)
+                {
+                    throw new NotImplementedException();
+                }
+            }
+        }
+
         private void Traiter(List<Case> aTraiter, Case caseEnCours)
         {
             foreach (Case v in caseEnCours.Voisins)
