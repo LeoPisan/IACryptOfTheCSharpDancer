@@ -11,6 +11,7 @@ namespace IACryptOfTheCSharpDancer.metier.carte
     {
         private Dictionary<Coordonnees, Case> cases;
         private int taille;
+
         /// <summary>
         /// nombre de cases contenues dans la carte
         /// </summary>

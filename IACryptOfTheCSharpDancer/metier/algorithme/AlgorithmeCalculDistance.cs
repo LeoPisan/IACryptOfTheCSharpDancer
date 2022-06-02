@@ -21,6 +21,10 @@ namespace IACryptOfTheCSharpDancer.metier.algorithme
         public abstract void CalculerDistancesDepuis(Case depart);
 
         #region public methods
+        /// <summary>
+        /// initialise une nouvelle instance d'un algorithme de calcul de distances
+        /// </summary>
+        /// <param name="carte">carte à utiliser pour calculer les distances</param>
         public AlgorithmeCalculDistance(Carte carte)
         {
             this.carte = carte;

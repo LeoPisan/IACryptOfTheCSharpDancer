@@ -12,6 +12,7 @@ namespace IACryptOfTheCSharpDancer.metier.carte
         private Coordonnees coordonnees;
         private Terrain terrain;
         private Objet objet;
+        private List<Case> voisins;
         #endregion
 
         #region property
@@ -31,12 +32,23 @@ namespace IACryptOfTheCSharpDancer.metier.carte
         /// indique si la case est accessible
         /// </summary>
         public bool EstAccessible => this.Terrain.EstAccessible;
+        public List<Case> Voisins => this.voisins;
         #endregion
 
         #region public methods
         public Case(Coordonnees coordonnees)
         {
             this.coordonnees = coordonnees;
+            this.voisins = new List<Case>();
+        }
+
+        /// <summary>
+        /// ajoute un voisin
+        /// </summary>
+        /// <param name="voisin">voisin à ajouter</param>
+        public void AjouterVoisin(Case voisin)
+        {
+            voisins.Add(voisin);
         }
         #endregion
     }
