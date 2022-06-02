@@ -27,7 +27,10 @@ namespace IACryptOfTheCSharpDancer.metier.carte
         /// objet contenu par la case
         /// </summary>
         public Objet Objet { get { return this.objet; } set { this.objet = value; } }
-        public bool EstAccessible
+        /// <summary>
+        /// indique si la case est accessible
+        /// </summary>
+        public bool EstAccessible => this.Terrain.EstAccessible;
         #endregion
 
         #region public methods
