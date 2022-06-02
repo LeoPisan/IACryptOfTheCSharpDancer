@@ -19,6 +19,12 @@ namespace IACryptOfTheCSharpDancer.metier.algorithme
         /// </summary>
         /// <param name="depart">case de départ</param>
         public abstract void CalculerDistancesDepuis(Case depart);
+        /// <summary>
+        /// détermine le chemin à suivre pour aller jusqu'à une case spécifique
+        /// </summary>
+        /// <param name="arrivee">case d'arrivée</param>
+        /// <returns>chemin à suivre</returns>
+        public abstract List<TypeMouvement> GetChemin(Case arrivee);
 
         #region public methods
         /// <summary>

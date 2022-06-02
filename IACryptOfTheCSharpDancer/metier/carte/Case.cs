@@ -50,6 +50,11 @@ namespace IACryptOfTheCSharpDancer.metier.carte
         {
             voisins.Add(voisin);
         }
+
+        public TypeMouvement GetMouvementPourAller(Case voisin)
+        {
+            return Coordonnees.GetMouvementPourAller(voisin.coordonnees);
+        }
         #endregion
     }
 }
