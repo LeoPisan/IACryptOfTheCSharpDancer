@@ -7,7 +7,7 @@ namespace IACryptOfTheCSharpDancer.metier.carte.terrains
     /// <summary>
     /// représente un terrain générique
     /// </summary>
-    abstract class Terrain
+    public abstract class Terrain
     {
 
         /// <summary>

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IACryptOfTheCSharpDancer.metier.carte.objets
 {
-    enum TypeObjet
+    public enum TypeObjet
     {
         DIAMANT
     }

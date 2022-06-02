@@ -6,7 +6,7 @@ using System.Text;
 
 namespace IACryptOfTheCSharpDancer.metier.carte
 {
-    class Case
+    public class Case
     {
         #region attributes
         private Coordonnees coordonnees;

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IACryptOfTheCSharpDancer.metier.carte.terrains
 {
-    enum TypeTerrain
+    public enum TypeTerrain
     {
         VIDE,
         MUR,

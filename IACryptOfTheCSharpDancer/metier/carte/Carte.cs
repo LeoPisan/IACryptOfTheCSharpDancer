@@ -7,7 +7,7 @@ namespace IACryptOfTheCSharpDancer.metier.carte
     /// <summary>
     /// représente la carte du jeu
     /// </summary>
-    class Carte
+    public class Carte
     {
         private Dictionary<Coordonnees, Case> cases;
         private int taille;
@@ -28,6 +28,28 @@ namespace IACryptOfTheCSharpDancer.metier.carte
             for (int i = 0; i < this.taille; i++)
                 for (int j = 0; j < this.taille; j++)
                     this.AjouterCase(messageRecu[j + this.taille * i], new Coordonnees(i, j));
+
+            for (int i = 0; i < this.taille; i++)
+            {
+                for (int j = 0; j < this.taille; j++)
+                {
+                    Coordonnees cooCase = new Coordonnees(i, j);
+                    foreach (TypeMouvement mouvement in
+                    (TypeMouvement[])Enum.GetValues(typeof(TypeMouvement)))
+                    {
+                        Coordonnees cooVoisin = cooCase.GetVoisin(mouvement);
+                        if (this.cases.ContainsKey(cooVoisin))
+                        {
+                            this.cases[cooCase].AjouterVoisin(this.cases[cooVoisin]);
+                        }
+                    }
+                }
+            }
+        }
+
+        public Case GetCaseAt(Coordonnees coordonnees)
+        {
+            return cases[coordonnees];
         }
 
         //ajoute une case à la carte

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IACryptOfTheCSharpDancer.metier.carte
 {
-    enum TypeMouvement
+    public enum TypeMouvement
     {
         HAUT,
         GAUCHE,

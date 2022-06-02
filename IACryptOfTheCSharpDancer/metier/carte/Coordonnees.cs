@@ -7,7 +7,7 @@ namespace IACryptOfTheCSharpDancer.metier.carte
     /// <summary>
     /// contient les coordonnées d'une case
     /// </summary>
-    class Coordonnees
+    public class Coordonnees
     {
         #region attributes
         private int ligne;

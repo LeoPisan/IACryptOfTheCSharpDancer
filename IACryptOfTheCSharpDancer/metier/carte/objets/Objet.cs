@@ -7,7 +7,7 @@ namespace IACryptOfTheCSharpDancer.metier.carte.objets
     /// <summary>
     /// objet collectable dans le jeu
     /// </summary>
-    abstract class Objet
+    public abstract class Objet
     {
         private Case position;
 
