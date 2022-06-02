@@ -11,11 +11,16 @@ namespace IACryptOfTheCSharpDancer.metier.carte
     {
         private Dictionary<Coordonnees, Case> cases;
         private int taille;
+        private Coordonnees coordonneesDepart;
 
         /// <summary>
         /// nombre de cases contenues dans la carte
         /// </summary>
         public int Taille => taille;
+        /// <summary>
+        /// coordonnées de départ du joueur
+        /// </summary>
+        public Coordonnees CoordonneesDepart => coordonneesDepart;
 
         /// <summary>
         /// créée une carte selon un message reçu depuis le serveur
@@ -56,6 +61,8 @@ namespace IACryptOfTheCSharpDancer.metier.carte
         private void AjouterCase(char caractere, Coordonnees coordonnees)
         {
             this.cases.Add(coordonnees, FabriqueCase.Creer(caractere, coordonnees));
+            if (caractere == 'J')
+                coordonneesDepart = coordonnees;
         }
     }
 }

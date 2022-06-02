@@ -20,13 +20,7 @@ namespace IACryptOfTheCSharpDancer.modules
         public string DeterminerNouvelleAction(string messageRecuDuServeur)
         {
             string retour = null;
-            if (!IA.ModuleMemoire.HasCarte())
-                retour = "MAP";
-            else
-            {
-                retour = "END";
-                this.IA.ArreterLaCommunication();
-            }
+            retour = ActionBlindDrunken();
             return retour;
         }
 

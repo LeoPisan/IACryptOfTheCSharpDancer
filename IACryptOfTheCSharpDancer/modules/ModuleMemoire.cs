@@ -6,6 +6,9 @@ namespace IACryptOfTheCSharpDancer.modules
     public class ModuleMemoire : Module
     {
         private Carte carte;
+        private Joueur joueur;
+
+        public Joueur Joueur => joueur;
 
         #region public methods
         /// <summary>Constructeur par défaut</summary>
@@ -19,6 +22,7 @@ namespace IACryptOfTheCSharpDancer.modules
         public void GenererCarte(string messageRecu)
         {
             this.carte = new Carte(messageRecu);
+            GenererJoueur(carte.CoordonneesDepart);
         }
 
         /// <summary>
@@ -28,6 +32,16 @@ namespace IACryptOfTheCSharpDancer.modules
         public bool HasCarte()
         {
             return this.carte != null;
+        }
+
+        public bool HasJoueur()
+        {
+            return Joueur == null;
+        }
+
+        public void GenererJoueur(Coordonnees coordonnees)
+        {
+            this.joueur = new Joueur(coordonnees);
         }
         #endregion
     }
