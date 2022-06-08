@@ -40,11 +40,51 @@ namespace IACryptOfTheCSharpDancer.metier.algorithme
             //calcul
             if (GetDistance(caseEnCours) != -1)
             {
-                while (GetDistance(caseEnCours) > 0)
-                {
-                    throw new NotImplementedException();
-                }
+                caseEnCours = GenerateWay(resultat, caseEnCours);
             }
+
+            return resultat;
+        }
+
+        private Case GenerateWay(List<TypeMouvement> resultat, Case caseEnCours)
+        {
+            /*
+            * On sait qu'on sortira forcément de la boucle puisque 
+            * on peut considérer la distance jusqu'à caseEnCours 
+            * comme une suite arithmétique de raison r = -1
+            * cette distance deviendra donc forcément inférieure à 0
+            */
+
+            while (GetDistance(caseEnCours) > 0)
+            {
+                caseEnCours = AddPreviousCase(resultat, caseEnCours);
+            }
+            resultat.Reverse();
+            return caseEnCours;
+        }
+
+        private Case AddPreviousCase(List<TypeMouvement> resultat, Case caseEnCours)
+        {
+            Case previous = FindPreviousCase(caseEnCours);
+            TypeMouvement move = previous.GetMouvementPourAller(caseEnCours);
+            resultat.Add(move);
+            caseEnCours = previous;
+            return caseEnCours;
+        }
+
+        private Case FindPreviousCase(Case caseEnCours)
+        {
+            Case returnValue = null;
+            foreach (Case c in caseEnCours.Voisins)
+                returnValue = CheckIsPreviousCase(caseEnCours, returnValue, c);
+            return returnValue;
+        }
+
+        private Case CheckIsPreviousCase(Case caseEnCours, Case returnValue, Case c)
+        {
+            if (GetDistance(c) == GetDistance(caseEnCours) - 1)
+                returnValue = c;
+            return returnValue;
         }
 
         private void Traiter(List<Case> aTraiter, Case caseEnCours)

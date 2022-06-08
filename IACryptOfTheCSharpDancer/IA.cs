@@ -52,14 +52,7 @@ namespace IACryptOfTheCSharpDancer
             //Boucle de discussion
             while(!this.aFiniDeCommuniquer)
             {
-                //Réception du message du serveur
-                messageRecu = this.ModuleCommunication.RecevoirMessage();
-                //Réaction au message 
-                this.ModuleReaction.ReagirAuMessageRecu(messageEnvoye, messageRecu);
-                //Détermination de la prochaine action
-                messageEnvoye = this.ModulePriseDeDecisions.DeterminerNouvelleAction(messageRecu);
-                //Envoi du message au serveur
-                this.moduleCommunication.EnvoyerMessage(messageEnvoye);
+                messageRecu = BoucleOfDiscussion(ref messageEnvoye);
             }
 
             //Réception du dernier message de l'IA avant fermeture de la connexion
@@ -68,10 +61,23 @@ namespace IACryptOfTheCSharpDancer
             this.ModuleCommunication.FermerConnexion();
         }
 
+        private string BoucleOfDiscussion(ref string messageEnvoye)
+        {
+            //Réception du message du serveur
+            string messageRecu = this.ModuleCommunication.RecevoirMessage();
+            //Réaction au message 
+            this.ModuleReaction.ReagirAuMessageRecu(messageEnvoye, messageRecu);
+            //Détermination de la prochaine action
+            messageEnvoye = this.ModulePriseDeDecisions.DeterminerNouvelleAction(messageRecu);
+            //Envoi du message au serveur
+            this.moduleCommunication.EnvoyerMessage(messageEnvoye);
+            return messageRecu;
+        }
+
         /// <summary>Méthode appelée quand on souhaite arrêter la communication avec le serveur</summary>
         public void ArreterLaCommunication()
         {
-            this.aFiniDeCommuniquer = true;
+            aFiniDeCommuniquer = true;
         }
 
 
