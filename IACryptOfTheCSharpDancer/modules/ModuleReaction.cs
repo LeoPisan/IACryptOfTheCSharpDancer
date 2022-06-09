@@ -39,8 +39,22 @@ namespace IACryptOfTheCSharpDancer.modules
 
         private void ReactionMouvement(TypeMouvement mouvement)
         {
-            Joueur.Deplacer(mouvement);
-            RamasserDiamant(Joueur.Coordonnees);
+            Coordonnees destination = this.IA.ModuleMemoire.Joueur.Coordonnees.GetVoisin(mouvement);
+            if (this.IA.ModuleMemoire.Carte.GetCaseAt(destination).MoveCost > 1)
+                CreuserMur(destination);
+            else
+                GenericMovement(mouvement);
+        }
+
+        private void GenericMovement(TypeMouvement mouvement)
+        {
+            this.IA.ModuleMemoire.Joueur.Deplacer(mouvement);
+            this.IA.ModuleMemoire.Carte.RamasserDiamant(this.IA.ModuleMemoire.Joueur.Coordonnees);
+        }
+
+        private void CreuserMur(Coordonnees destination)
+        {
+            this.IA.ModuleMemoire.Carte.GetCaseAt(destination).Creuser();
         }
 
         private void RamasserDiamant(Coordonnees coordonnees)

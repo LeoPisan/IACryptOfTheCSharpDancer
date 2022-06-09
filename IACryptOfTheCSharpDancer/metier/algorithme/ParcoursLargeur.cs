@@ -69,8 +69,12 @@ namespace IACryptOfTheCSharpDancer.metier.algorithme
             Case previous = FindPreviousCase(caseEnCours);
             TypeMouvement move = previous.GetMouvementPourAller(caseEnCours);
 
+            //on ajoute le nombre de déplacements nécessaires selon le poids de l'arète
             for (int i = 0; i < previous.MoveCost; i++)
+            {
                 resultat.Add(move);
+            }
+
             caseEnCours = previous;
             return caseEnCours;
         }

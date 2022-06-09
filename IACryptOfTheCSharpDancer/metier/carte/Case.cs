@@ -61,6 +61,11 @@ namespace IACryptOfTheCSharpDancer.metier.carte
             objet = null;
         }
 
+        public void Creuser()
+        {
+            terrain = new TerrainVide();
+        }
+
         public TypeMouvement GetMouvementPourAller(Case voisin)
         {
             return Coordonnees.GetMouvementPourAller(voisin.coordonnees);
