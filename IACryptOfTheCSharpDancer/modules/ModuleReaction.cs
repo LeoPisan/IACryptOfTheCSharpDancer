@@ -9,6 +9,8 @@ namespace IACryptOfTheCSharpDancer.modules
         public Joueur Joueur => IA.Joueur;
         public List<string> MoveMessages => IA.MoveMessages;
         public Carte Carte => IA.Carte;
+        public ModuleCommunication ModuleCommunication => IA.ModuleCommunication;
+
 
         /// <summary>Constructeur par défaut</summary>
         /// <param name="ia">L'IA dont dépend le module</param>
@@ -31,6 +33,8 @@ namespace IACryptOfTheCSharpDancer.modules
                     case "MOVE DOWN": ReactionMouvement(TypeMouvement.BAS); break;
                 }
             }
+            else if (messageRecu == "END")
+                ModuleCommunication.FermerConnexion();
         }
 
         private void ReactionMouvement(TypeMouvement mouvement)
