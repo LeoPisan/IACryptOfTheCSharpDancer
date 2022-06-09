@@ -20,6 +20,16 @@ namespace IACryptOfTheCSharpDancer.modules
         {
             if (messageEnvoye == "MAP")
                 IA.ModuleMemoire.GenererCarte(messageRecu);
+            else if (messageEnvoye.StartsWith("MOVE"))
+            {
+                switch (messageEnvoye)
+                {
+                    case "MOVE LEFT": ReactionMouvement(TypeMouvement.GAUCHE); break;
+                    case "MOVE RIGHT": ReactionMouvement(TypeMouvement.DROITE); break;
+                    case "MOVE UP": ReactionMouvement(TypeMouvement.HAUT); break;
+                    case "MOVE DOWN": ReactionMouvement(TypeMouvement.BAS); break;
+                }
+            }
         }
 
         private void ReactionMouvement(TypeMouvement mouvement)
