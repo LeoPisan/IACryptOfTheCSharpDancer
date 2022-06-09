@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IACryptOfTheCSharpDancer.metier.carte.objets;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,6 +13,7 @@ namespace IACryptOfTheCSharpDancer.metier.carte
         private Dictionary<Coordonnees, Case> cases;
         private int taille;
         private Coordonnees coordonneesDepart;
+        private List<Objet> diamants;
 
         /// <summary>
         /// nombre de cases contenues dans la carte
@@ -23,11 +25,19 @@ namespace IACryptOfTheCSharpDancer.metier.carte
         public Coordonnees CoordonneesDepart => coordonneesDepart;
 
         /// <summary>
+        /// listte des diamants de la carte
+        /// </summary>
+        public List<Objet> Diamants { get => diamants; }
+
+
+
+        /// <summary>
         /// créée une carte selon un message reçu depuis le serveur
         /// </summary>
         /// <param name="messageRecu">message reçu à partir duquel créer la carte</param>
         public Carte(string messageRecu)
         {
+            diamants = new List<Objet>();
             this.cases = new Dictionary<Coordonnees, Case>();
             this.taille = (int)Math.Sqrt(messageRecu.Length);
             for (int i = 0; i < this.taille; i++)
@@ -60,9 +70,17 @@ namespace IACryptOfTheCSharpDancer.metier.carte
         //ajoute une case à la carte
         private void AjouterCase(char caractere, Coordonnees coordonnees)
         {
-            this.cases.Add(coordonnees, FabriqueCase.Creer(caractere, coordonnees));
-            if (caractere == 'J')
-                coordonneesDepart = coordonnees;
+            Case newCase = FabriqueCase.Creer(caractere, coordonnees);
+            cases.Add(coordonnees, newCase);
+            switch (caractere)
+            {
+                case 'J':
+                    coordonneesDepart = coordonnees;
+                    break;
+                case 'D':
+                    diamants.Add(newCase.Objet);
+                    break;
+            }
         }
     }
 }
