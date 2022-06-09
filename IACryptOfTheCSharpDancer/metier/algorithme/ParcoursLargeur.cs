@@ -1,4 +1,5 @@
 ﻿using IACryptOfTheCSharpDancer.metier.carte;
+using IACryptOfTheCSharpDancer.metier.carte.terrains;
 using System;
 using System.Collections.Generic;
 using System.Text;

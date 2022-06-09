@@ -1,4 +1,6 @@
-﻿using IACryptOfTheCSharpDancer.modules;
+﻿using IACryptOfTheCSharpDancer.metier.carte;
+using IACryptOfTheCSharpDancer.modules;
+using System.Collections.Generic;
 
 namespace IACryptOfTheCSharpDancer
 {
@@ -25,7 +27,9 @@ namespace IACryptOfTheCSharpDancer
 
         private bool aFiniDeCommuniquer;
 
-
+        public Carte Carte => moduleMemoire.Carte;
+        public Joueur Joueur => moduleMemoire.Joueur;
+        public List<string> MoveMessages => modulePriseDeDecisions.MoveMessages;
 
         /// <summary>Constructeur par défaut</summary>
         public IA()
