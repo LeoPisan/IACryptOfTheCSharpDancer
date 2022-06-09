@@ -8,5 +8,7 @@ namespace IACryptOfTheCSharpDancer.metier.carte.terrains
     {
         public override TypeTerrain Type => TypeTerrain.VIDE;
         public override bool EstAccessible => true;
+
+        public override int MoveCost => 1;
     }
 }

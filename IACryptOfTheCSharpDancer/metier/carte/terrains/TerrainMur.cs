@@ -7,6 +7,8 @@ namespace IACryptOfTheCSharpDancer.metier.carte.terrains
     class TerrainMur : Terrain
     {
         public override TypeTerrain Type => TypeTerrain.MUR;
-        public override bool EstAccessible => false;
+        public override bool EstAccessible => true;
+
+        public override int MoveCost => 2;
     }
 }

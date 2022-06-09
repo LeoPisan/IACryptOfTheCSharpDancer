@@ -33,6 +33,11 @@ namespace IACryptOfTheCSharpDancer.metier.carte
         /// </summary>
         public bool EstAccessible => this.Terrain.EstAccessible;
         public List<Case> Voisins => this.voisins;
+
+        /// <summary>
+        /// coût du déplacement vers cette case
+        /// </summary>
+        //public int MoveCost => 0;
         #endregion
 
         #region public methods

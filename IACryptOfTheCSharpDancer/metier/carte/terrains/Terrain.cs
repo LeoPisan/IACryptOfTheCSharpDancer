@@ -18,5 +18,7 @@ namespace IACryptOfTheCSharpDancer.metier.carte.terrains
         /// indique si la case est accessible
         /// </summary>
         public abstract bool EstAccessible { get; }
+
+        public virtual int MoveCost => 0;
     }
 }
