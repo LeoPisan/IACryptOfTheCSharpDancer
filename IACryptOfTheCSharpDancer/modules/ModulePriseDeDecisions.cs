@@ -70,7 +70,7 @@ namespace IACryptOfTheCSharpDancer.modules
             {
                 case TypeMouvement.HAUT: reponse = "MOVE UP"; break;
                 case TypeMouvement.GAUCHE: reponse = "MOVE LEFT"; break;
-                case TypeMouvement.DROITE: reponse = "MOVE RIGHT "; break;
+                case TypeMouvement.DROITE: reponse = "MOVE RIGHT"; break;
                 case TypeMouvement.BAS: reponse = "MOVE DOWN"; break;
             }
 

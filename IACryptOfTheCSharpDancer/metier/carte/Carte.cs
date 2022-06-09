@@ -66,7 +66,7 @@ namespace IACryptOfTheCSharpDancer.metier.carte
         {
             Case case_ = GetCaseAt(coordonnees);
             Objet objetCase = case_.Objet;
-            if (objetCase.Type is TypeObjet.DIAMANT)
+            if (objetCase != null && objetCase.Type is TypeObjet.DIAMANT)
             {
                 diamants.Remove(objetCase);
                 case_.RetirerObjet();

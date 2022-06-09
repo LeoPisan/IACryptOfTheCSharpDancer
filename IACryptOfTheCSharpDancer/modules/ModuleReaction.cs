@@ -8,6 +8,7 @@ namespace IACryptOfTheCSharpDancer.modules
     {
         public Joueur Joueur => IA.Joueur;
         public List<string> MoveMessages => IA.MoveMessages;
+        public Carte Carte => IA.Carte;
 
         /// <summary>Constructeur par défaut</summary>
         /// <param name="ia">L'IA dont dépend le module</param>
@@ -35,6 +36,12 @@ namespace IACryptOfTheCSharpDancer.modules
         private void ReactionMouvement(TypeMouvement mouvement)
         {
             Joueur.Deplacer(mouvement);
+            RamasserDiamant(Joueur.Coordonnees);
+        }
+
+        private void RamasserDiamant(Coordonnees coordonnees)
+        {
+            Carte.RamasserDiamant(coordonnees);
         }
     }
 }
