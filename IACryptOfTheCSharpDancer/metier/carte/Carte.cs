@@ -62,6 +62,17 @@ namespace IACryptOfTheCSharpDancer.metier.carte
             }
         }
 
+        public void RamasserDiamant(Coordonnees coordonnees)
+        {
+            Case case_ = GetCaseAt(coordonnees);
+            Objet objetCase = case_.Objet;
+            if (objetCase.Type is TypeObjet.DIAMANT)
+            {
+                diamants.Remove(objetCase);
+                case_.RetirerObjet();
+            }
+        }
+
         public Case GetCaseAt(Coordonnees coordonnees)
         {
             return cases[coordonnees];

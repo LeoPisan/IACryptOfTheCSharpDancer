@@ -51,6 +51,11 @@ namespace IACryptOfTheCSharpDancer.metier.carte
             voisins.Add(voisin);
         }
 
+        public void RetirerObjet()
+        {
+            objet = null;
+        }
+
         public TypeMouvement GetMouvementPourAller(Case voisin)
         {
             return Coordonnees.GetMouvementPourAller(voisin.coordonnees);
