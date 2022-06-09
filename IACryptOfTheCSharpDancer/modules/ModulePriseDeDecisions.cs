@@ -1,5 +1,6 @@
 ﻿using IACryptOfTheCSharpDancer.metier.algorithme;
 using IACryptOfTheCSharpDancer.metier.carte;
+using IACryptOfTheCSharpDancer.metier.carte.objets;
 using System;
 using System.Collections.Generic;
 
@@ -13,6 +14,7 @@ namespace IACryptOfTheCSharpDancer.modules
         private List<TypeMouvement> mouvements;
 
         public Carte Carte => IA.Carte;
+        public List<Objet> Diamonds => IA.Diamonds;
 
         /// <summary>
         /// liste des messages de déplacement
@@ -49,19 +51,64 @@ namespace IACryptOfTheCSharpDancer.modules
         {
             if (this.IA.ModuleMemoire.Diamants.Count > 0 && this.mouvements.Count == 0)
             {
-                AlgorithmeCalculDistance parcours = new ParcoursLargeur(this.IA.ModuleMemoire.Carte);
-                Case depart = Carte.GetCaseAt(IA.ModuleMemoire.Joueur.Coordonnees);
-                parcours.CalculerDistancesDepuis(depart);
-                this.mouvements = parcours.GetChemin(this.IA.ModuleMemoire.Diamants[0].Position);
+                FindPathToDiamond();
+            }
+            else if (this.mouvements.Count == 0)
+            {
+                FindPathToExit();
             }
 
             if (this.mouvements.Count > 0)
             {
-                reponse = MovementToString(reponse);
-                this.mouvements.RemoveAt(0);
+                reponse = DiamondIsReached(reponse);
             }
 
             return reponse;
+        }
+
+        private string DiamondIsReached(string reponse)
+        {
+            reponse = MovementToString(reponse);
+            this.mouvements.RemoveAt(0);
+            return reponse;
+        }
+
+        private void FindPathToDiamond()
+        {
+            AlgorithmeCalculDistance parcours = new ParcoursLargeur(this.IA.ModuleMemoire.Carte);
+            Case depart = Carte.GetCaseAt(IA.ModuleMemoire.Joueur.Coordonnees);
+            parcours.CalculerDistancesDepuis(depart);
+            /*
+            this.mouvements = parcours.GetChemin(this.IA.ModuleMemoire.Diamants[0].Position);
+            */
+
+            int distanceMin = -1;
+            ObjetDiamant closestDiamond = null;
+
+            foreach (Objet o in Diamonds)
+            {
+                FindClosestDiamond(parcours, ref distanceMin, ref closestDiamond, o);
+            }
+            mouvements = parcours.GetChemin(closestDiamond.Position);
+        }
+
+        private static void FindClosestDiamond(AlgorithmeCalculDistance parcours, ref int distanceMin, ref ObjetDiamant closestDiamond, Objet o)
+        {
+            int distanceO = parcours.GetDistance(o.Position);
+            if (distanceMin == -1 || distanceO < distanceMin)
+            {
+                distanceMin = distanceO;
+                closestDiamond = (ObjetDiamant)o;
+            }
+        }
+
+        private void FindPathToExit()
+        {
+            AlgorithmeCalculDistance parcours = new ParcoursLargeur(this.IA.ModuleMemoire.Carte);
+            Case depart = this.IA.ModuleMemoire.Carte.GetCaseAt(this.IA.ModuleMemoire.Joueur.Coordonnees);
+            Case sortie = this.IA.ModuleMemoire.Carte.GetCaseAt(this.IA.ModuleMemoire.Carte.CoordonneesSortie);
+            parcours.CalculerDistancesDepuis(depart);
+            this.mouvements = parcours.GetChemin(sortie);
         }
 
         private string MovementToString(string reponse)

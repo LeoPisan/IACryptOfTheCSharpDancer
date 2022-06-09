@@ -1,4 +1,5 @@
 ﻿using IACryptOfTheCSharpDancer.metier.carte;
+using IACryptOfTheCSharpDancer.metier.carte.objets;
 using IACryptOfTheCSharpDancer.modules;
 using System.Collections.Generic;
 
@@ -30,6 +31,7 @@ namespace IACryptOfTheCSharpDancer
         public Carte Carte => moduleMemoire.Carte;
         public Joueur Joueur => moduleMemoire.Joueur;
         public List<string> MoveMessages => modulePriseDeDecisions.MoveMessages;
+        public List<Objet> Diamonds => Carte.Diamants;
 
         /// <summary>Constructeur par défaut</summary>
         public IA()

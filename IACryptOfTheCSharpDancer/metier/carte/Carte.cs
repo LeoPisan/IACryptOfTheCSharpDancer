@@ -14,6 +14,7 @@ namespace IACryptOfTheCSharpDancer.metier.carte
         private int taille;
         private Coordonnees coordonneesDepart;
         private List<Objet> diamants;
+        private Coordonnees coordonneesSortie;
 
         /// <summary>
         /// nombre de cases contenues dans la carte
@@ -28,6 +29,11 @@ namespace IACryptOfTheCSharpDancer.metier.carte
         /// listte des diamants de la carte
         /// </summary>
         public List<Objet> Diamants { get => diamants; }
+
+        /// <summary>
+        /// coordonnées de la sortie de la carte
+        /// </summary>
+        public Coordonnees CoordonneesSortie => coordonneesSortie;
 
 
 
@@ -90,6 +96,9 @@ namespace IACryptOfTheCSharpDancer.metier.carte
                     break;
                 case 'D':
                     diamants.Add(newCase.Objet);
+                    break;
+                case 'S':
+                    coordonneesSortie = coordonnees;
                     break;
             }
         }
