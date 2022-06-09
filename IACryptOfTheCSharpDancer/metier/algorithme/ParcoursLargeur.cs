@@ -68,7 +68,9 @@ namespace IACryptOfTheCSharpDancer.metier.algorithme
         {
             Case previous = FindPreviousCase(caseEnCours);
             TypeMouvement move = previous.GetMouvementPourAller(caseEnCours);
-            resultat.Add(move);
+
+            for (int i = 0; i < previous.MoveCost; i++)
+                resultat.Add(move);
             caseEnCours = previous;
             return caseEnCours;
         }

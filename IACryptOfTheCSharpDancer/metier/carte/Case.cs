@@ -37,7 +37,7 @@ namespace IACryptOfTheCSharpDancer.metier.carte
         /// <summary>
         /// coût du déplacement vers cette case
         /// </summary>
-        //public int MoveCost => 0;
+        public int MoveCost => terrain.MoveCost;
         #endregion
 
         #region public methods
