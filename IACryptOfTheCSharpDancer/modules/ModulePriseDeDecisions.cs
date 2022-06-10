@@ -51,11 +51,11 @@ namespace IACryptOfTheCSharpDancer.modules
         {
             if (this.IA.ModuleMemoire.Diamants.Count > 0 && this.mouvements.Count == 0)
             {
-                FindPathToDiamond();
+                FindPathToDiamondWithParcoursLargeur();
             }
             else if (this.mouvements.Count == 0)
             {
-                FindPathToExit();
+                FindPathToExitWithParcoursLargeur();
             }
 
             if (this.mouvements.Count > 0)
@@ -73,7 +73,23 @@ namespace IACryptOfTheCSharpDancer.modules
             return reponse;
         }
 
-        private void FindPathToDiamond()
+        private void FindPathToDiamondWithDijkstra()
+        {
+            Dijkstra dijkstra = new Dijkstra(Carte);
+            Case start = Carte.GetCaseAt(IA.ModuleMemoire.Joueur.Coordonnees);
+            dijkstra.CalculerDistancesDepuis(start);
+
+            int distanceMin = -1;
+            ObjetDiamant closestDiamond = null;
+
+            foreach (Objet o in Diamonds)
+            {
+                FindClosestDiamond(dijkstra, ref distanceMin, ref closestDiamond, o);
+            }
+            mouvements = dijkstra.GetChemin(closestDiamond.Position);
+        }
+
+        private void FindPathToDiamondWithParcoursLargeur()
         {
             AlgorithmeCalculDistance parcours = new ParcoursLargeur(this.IA.ModuleMemoire.Carte);
             Case depart = Carte.GetCaseAt(IA.ModuleMemoire.Joueur.Coordonnees);
@@ -102,7 +118,16 @@ namespace IACryptOfTheCSharpDancer.modules
             }
         }
 
-        private void FindPathToExit()
+        private void FindPathToExitWithDijkstra()
+        {
+            Dijkstra dijkstra = new Dijkstra(this.IA.ModuleMemoire.Carte);
+            Case start = IA.ModuleMemoire.Carte.GetCaseAt(IA.ModuleMemoire.Joueur.Coordonnees);
+            Case exit = IA.ModuleMemoire.Carte.GetCaseAt(IA.ModuleMemoire.Carte.CoordonneesSortie);
+            dijkstra.CalculerDistancesDepuis(start);
+            mouvements = dijkstra.GetChemin(exit);
+        }
+
+        private void FindPathToExitWithParcoursLargeur()
         {
             AlgorithmeCalculDistance parcours = new ParcoursLargeur(this.IA.ModuleMemoire.Carte);
             Case depart = this.IA.ModuleMemoire.Carte.GetCaseAt(this.IA.ModuleMemoire.Joueur.Coordonnees);

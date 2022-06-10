@@ -45,7 +45,7 @@ namespace IACryptOfTheCSharpDancer.metier.algorithme
         public int GetDistance(Case position)
         {
             int retour = -1;
-            if (distances.ContainsKey(position))
+            if (position != null && distances.ContainsKey(position))
                 retour = distances[position];
             return retour;
         }
