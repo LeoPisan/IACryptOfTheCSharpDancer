@@ -35,6 +35,8 @@ namespace IACryptOfTheCSharpDancer.metier.carte
         /// </summary>
         public Coordonnees CoordonneesSortie => coordonneesSortie;
 
+        public Dictionary<Coordonnees, Case> Cases { get => cases; }
+
 
 
         /// <summary>
